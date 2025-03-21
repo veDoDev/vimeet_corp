@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #4ac559;
+        }
+
+        .phone-container {
+            width: 360px;
+            height: 700px;
+            background-color: #f8f9fa;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 8px solid black;
+            overflow: hidden;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+            background-color: white;
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            top: 150px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            color: purple;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            border: 1px solid purple;
+            box-shadow: 0 0 8px rgba(128, 0, 128, 0.5);
+            outline: none;
+        }
+
+        button {
+            background-color: purple;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s ease-in-out, background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #8b008b;
+            transform: scale(1.05);
+        }
+
+        #weather {
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+            color: black;
+        }
+
+        .weather-icon {
+            width: 100px;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        <div class="header">
+            Tech Kisan - Weather
+        </div>
+
+        <div class="container">
+            <div class="title">🌦 Check Weather</div>
+            <input type="text" id="city" placeholder="Enter city name" />
+            <button id="getWeatherBtn">Get Weather</button>
+            <div id="weather"></div>
+        </div>
+    </div>
+
+<script>
+    let b1 = document.querySelector("button");
+    let field = document.querySelector("#city");
+    let container = document.querySelector("#weather");
+
+    b1.addEventListener('click', () => {
+        let city = field.value;
+        if (!city) {
+            alert("Please enter city");
+        } else {
+            fetchWeather(city);
+        }
+    });
+
+    async function fetchWeather(city) {
+        try {
+            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=6ed570ac911dad2a255e2965a53ced74&units=metric`);
+            let data = await response.json();
+            displayWeather(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function displayWeather(data) {
+        let { sys, main, wind, weather, name } = data;
+        container.innerHTML = `<h2>Weather in ${name}, ${sys.country}</h2>
+            <p>Temperature: ${main.temp}°C</p>
+            <p>Weather: ${weather[0].description}</p>
+            <p>Humidity: ${main.humidity}%</p>
+            <p>Wind Speed: ${wind.speed} m/s</p>
+            <img src="https://openweathermap.org/img/wn/${weather[0].icon}.png" class="weather-icon" alt="Weather Icon">`;
+    }
+</script>
+</body>
+</html>

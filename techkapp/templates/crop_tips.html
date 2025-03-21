@@ -1,0 +1,515 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Management Tips</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #4ac559;
+            overflow: hidden;
+        }
+
+        .phone-container {
+            width: 360px;
+            height: 700px;
+            background-color: #f8f9fa;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 8px solid black;
+            overflow: hidden;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background-color: white;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .scroll-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .vegetable {
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-align: center;
+            font-size: 1em;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            color: purple;
+            text-align: center;
+        }
+
+        .vegetable:hover {
+            transform: scale(1.05);
+        }
+        .tip {
+    position: fixed;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 500px;
+    width: 100%;
+    text-align: left;
+    font-size: 1.1em;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        <div class="header">
+            <img src="xyz.png" alt="Logo" class="logo">
+            Tech Kisan
+        </div>
+
+        <div class="scroll-container">
+            <div class="container">
+
+                <div class="title">Services</div><br><br>
+
+                <div class="vegetable" style="background-image: url('images/tomato.jpg');" data-crop="tomato">Tomato</div>
+                <div class="vegetable" style="background-image: url('images/potato.jpg');" data-crop="potato">Potato</div>
+                <div class="vegetable" style="background-image: url('images/onion.jpg');" data-crop="onion">Onion</div>
+                <div class="vegetable" style="background-image: url('images/brinjal.jpg');" data-crop="brinjal">Brinjal</div>
+                <div class="vegetable" style="background-image: url('images/cabbage.jpg');" data-crop="cabbage">Cabbage</div>
+                <div class="vegetable" style="background-image: url('images/Cauliflower.jpg');" data-crop="cauliflower">Cauliflower</div>
+                <div class="vegetable" style="background-image: url('images/carrot.jpg');" data-crop="carrot">Carrot</div>
+                <div class="vegetable" style="background-image: url('images/chillyyyy.jpg');" data-crop="chili">Chili</div>
+                <div class="vegetable" style="background-image: url('images/spinach.jpg');" data-crop="spinach">Spinach</div>
+                <div class="vegetable" style="background-image: url('images/ladyfinger.jpg');" data-crop="ladyfinger">Ladyfinger</div>
+                <div class="vegetable" style="background-image: url('images/pumpkin.jpg');" data-crop="pumpkin">Pumpkin</div>
+                <div class="vegetable" style="background-image: url('images/radish.jpg');" data-crop="radish">Radish</div>
+                <div class="vegetable" style="background-image: url('images/turnip.jpg');" data-crop="turnip">Turnip</div>
+                <div class="vegetable" style="background-image: url('images/garlic.jpg');" data-crop="garlic">Garlic</div>
+                <div class="vegetable" style="background-image: url('images/ginger.jpg');" data-crop="ginger">Ginger</div>
+                <div class="vegetable" style="background-image: url('images/peas.jpg');" data-crop="peas">Peas</div>
+                <div class="vegetable" style="background-image: url('images/cucumber.jpg');" data-crop="cucumber">Cucumber</div>
+                <div class="vegetable" style="background-image: url('images/bottle\ gourd.jpg');" data-crop="bottle gourd">Bottle Gourd</div>
+                <div class="vegetable" style="background-image: url('images/bittergourd.jpg');" data-crop="bitter gourd">Bitter Gourd</div>
+                <div class="vegetable" style="background-image: url('images/apple.jpg');" data-crop="apple">Apple</div>
+                <div class="vegetable" style="background-image: url('images/banana.jpg');" data-crop="banana">Banana</div>
+                <div class="vegetable" style="background-image: url('images/mango.jpg');" data-crop="mango">Mango</div>
+                <div class="vegetable" style="background-image: url('images/papaya.jpg');" data-crop="papaya">Papaya</div>
+                <div class="vegetable" style="background-image: url('images/pineapple.jpg');" data-crop="pineapple">Pineapple</div>
+                <div class="vegetable" style="background-image: url('images/guava.jpg');" data-crop="guava">Guava</div>
+                <div class="vegetable" style="background-image: url('images/pomogranate.jpg');" data-crop="pomegranate">Pomegranate</div>
+                <div class="vegetable" style="background-image: url('images/watermelon.jpg');" data-crop="watermelon">Watermelon</div>
+                <div class="vegetable" style="background-image: url('images/muskmelon.jpg');" data-crop="muskmelon">Muskmelon</div>
+                <div class="vegetable" style="background-image: url('images/jackfruit.jpg');" data-crop="jackfruit">Jackfruit</div>
+                <div class="vegetable" style="background-image: url('images/lemon.jpg');" data-crop="lemon">Lemon</div>
+                <div class="vegetable" style="background-image: url('images/orange.jpg');" data-crop="orange">Orange</div>
+                <div class="vegetable" style="background-image: url('images/grapes.jpg');" data-crop="grapes">Grapes</div>
+                <div class="vegetable" style="background-image: url('images/strawberry.jpg');" data-crop="strawberry">Strawberry</div>
+                <div class="vegetable" style="background-image: url('images/cherry.jpg');" data-crop="cherry">Cherry</div>
+                <div class="vegetable" style="background-image: url('images/pear.jpg');" data-crop="pear">Pear</div>
+                <div class="vegetable" style="background-image: url('images/plum.jpg');" data-crop="plum">Plum</div>
+                <div class="vegetable" style="background-image: url('images/fig.jpg');" data-crop="fig">Fig</div>
+                <div class="vegetable" style="background-image: url('images/lychee.jpg');" data-crop="lychee">Lychee</div>
+                <div class="vegetable" style="background-image: url('images/coconut.jpg');" data-crop="coconut">Coconut</div>
+                <div class="vegetable" style="background-image: url('images/corn.jpg');" data-crop="sweet corn">Sweet Corn</div>
+                <div class="vegetable" style="background-image: url('images/custard\ apple.jpg');" data-crop="custard apple">Custard Apple</div>
+                <div class="vegetable" style="background-image: url('images/dragon\ fruit.jpg');" data-crop="dragon fruit">Dragon Fruit</div>
+                <div class="vegetable" style="background-image: url('images/wheat.jpg');" data-crop="wheat">Wheat</div>
+                <div class="vegetable" style="background-image: url('images/rice.jpg');" data-crop="rice">Rice</div>
+                <div class="vegetable" style="background-image: url('images/jowar.jpg');" data-crop="jowar">Jowar</div>
+                <div class="vegetable" style="background-image: url('images/millet.jpg');" data-crop="millet">Millet</div>
+                <div class="vegetable" style="background-image: url('images/barley.jpg');" data-crop="barley">Barley</div>
+                <div class="vegetable" style="background-image: url('images/ragi.jpg');" data-crop="ragi">Ragi</div>
+                <div class="vegetable" style="background-image: url('images/Toor\ dal.jpg');" data-crop="toorDal">Toor Dal</div>
+                <div class="vegetable" style="background-image: url('images/moong_dal.jpg');" data-crop="moongDal">Moong Dal</div>
+                <div class="vegetable" style="background-image: url('images/chana_dal.jpg');" data-crop="chanaDal">Chana Dal</div>
+                <div class="vegetable" style="background-image: url('images/urad_dal.jpg');" data-crop="uradDal">Urad Dal</div>
+                <div class="vegetable" style="background-image: url('images/masoor_dal.jpg');" data-crop="masoorDal">Masoor Dal</div>
+                <div class="vegetable" style="background-image: url('images/rajma.jpg');" data-crop="rajma">Rajma</div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" style="display: none;">
+        <div class="tip">
+            <h2 id="tip-title"></h2>
+            <ul>
+                <li><b>Water:</b> <span id="tip-water"></span></li>
+                <br>
+                <li><b>Harvest:</b> <span id="tip-harvest"></span></li>
+                <br>
+                <li><b>Pest:</b> <span id="tip-pest"></span></li>
+            </ul>
+            <button class="close-button" onclick="closeTip()">Close</button>
+        </div>
+    </div>
+    <script>
+        const tips = {
+            tomato: {
+                water: "Tomatoes require consistent moisture, about 1-1.5 inches of water per week.",
+                harvest: "Harvest tomatoes when they are fully colored and slightly soft to the touch, typically 60-85 days after planting.",
+                pest: "Common pests include aphids and whiteflies. Use neem oil or insecticidal soap to control them."
+            },
+            potato: {
+                water: "Potatoes need about 1-2 inches of water per week, especially during tuber formation.",
+                harvest: "Harvest potatoes when the foliage turns yellow and dies back, usually 70-120 days after planting.",
+                pest: "Colorado potato beetles are a common pest. Use crop rotation and insecticides to manage them."
+            },
+            onion: {
+                water: "Onions require about 1 inch of water per week, especially during bulb formation.",
+                harvest: "Harvest onions when the tops fall over and begin to dry, typically 100-120 days after planting.",
+                pest: "Onion thrips can be a problem. Use insecticidal soap or neem oil to control them."
+            },
+            brinjal: {
+                water: "Brinjal requires consistent moisture, about 1-1.5 inches of water per week.",
+                harvest: "Harvest brinjal when the skin is glossy and firm, typically 70-85 days after planting.",
+                pest: "Fruit and shoot borers are common pests. Use pheromone traps and insecticides to control them."
+            },
+            cabbage: {
+                water: "Cabbage needs about 1.5 inches of water per week, especially during head formation.",
+                harvest: "Harvest cabbage when the heads are firm and reach the desired size, typically 70-120 days after planting.",
+                pest: "Cabbage worms are a common pest. Use Bacillus thuringiensis (Bt) to control them."
+            },
+            cauliflower: {
+                water: "Cauliflower requires consistent moisture, about 1-1.5 inches of water per week.",
+                harvest: "Harvest cauliflower when the heads are firm and reach the desired size, typically 55-100 days after planting.",
+                pest: "Cabbage worms and aphids are common pests. Use Bacillus thuringiensis (Bt) and insecticidal soap to control them."
+            },
+            carrot: {
+                water: "Carrots need about 1 inch of water per week, especially during root development.",
+                harvest: "Harvest carrots when they reach the desired size, typically 50-75 days after planting.",
+                pest: "Carrot rust flies can be a problem. Use row covers and insecticides to control them."
+            },
+            chili: {
+                water: "Chili plants require about 1-1.5 inches of water per week, especially during fruiting.",
+                harvest: "Harvest chili peppers when they are firm and fully colored, typically 60-90 days after planting.",
+                pest: "Aphids and thrips are common pests. Use neem oil or insecticidal soap to control them."
+            },
+            spinach: {
+                water: "Spinach needs about 1 inch of water per week, especially during leaf growth.",
+                harvest: "Harvest spinach when the leaves are large enough to eat, typically 40-50 days after planting.",
+                pest: "Leaf miners and aphids are common pests. Use row covers and insecticidal soap to control them."
+            },
+            ladyfinger: {
+                water: "Ladyfinger requires about 1-1.5 inches of water per week, especially during fruiting.",
+                harvest: "Harvest ladyfinger when the pods are 2-3 inches long and tender, typically 50-60 days after planting.",
+                pest: "Aphids and fruit borers are common pests. Use neem oil or insecticidal soap to control them."
+            },
+            pumpkin: {
+                water: "Pumpkins need about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest pumpkins when the rind is hard and the color is deep, typically 90-120 days after planting.",
+                pest: "Squash bugs and vine borers are common pests. Use row covers and insecticides to control them."
+            },
+            radish: {
+                water: "Radishes require about 1 inch of water per week, especially during root development.",
+                harvest: "Harvest radishes when they reach the desired size, typically 20-30 days after planting.",
+                pest: "Flea beetles can be a problem. Use row covers and insecticides to control them."
+            },
+            turnip: {
+                water: "Turnips need about 1 inch of water per week, especially during root development.",
+                harvest: "Harvest turnips when they reach the desired size, typically 30-60 days after planting.",
+                pest: "Flea beetles and aphids are common pests. Use row covers and insecticidal soap to control them."
+            },
+            garlic: {
+                water: "Garlic requires about 1 inch of water per week, especially during bulb formation.",
+                harvest: "Harvest garlic when the lower leaves turn brown, typically 90-120 days after planting.",
+                pest: "Thrips and onion maggots are common pests. Use insecticidal soap and crop rotation to control them."
+            },
+            ginger: {
+                water: "Ginger needs consistent moisture, about 1-1.5 inches of water per week.",
+                harvest: "Harvest ginger when the leaves turn yellow and die back, typically 8-10 months after planting.",
+                pest: "Root-knot nematodes can be a problem. Use crop rotation and nematicides to control them."
+            },
+            peas: {
+                water: "Peas require about 1 inch of water per week, especially during pod formation.",
+                harvest: "Harvest peas when the pods are plump and tender, typically 60-70 days after planting.",
+                pest: "Aphids and pea weevils are common pests. Use insecticidal soap and row covers to control them."
+            },
+            cucumber: {
+                water: "Cucumbers need about 1-2 inches of water per week, especially during fruiting.",
+                harvest: "Harvest cucumbers when they are firm and reach the desired size, typically 50-70 days after planting.",
+                pest: "Cucumber beetles and aphids are common pests. Use row covers and insecticides to control them."
+            },
+            "bottle gourd": {
+                water: "Bottle gourds require about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest bottle gourds when the skin is hard and the color is light green, typically 60-90 days after planting.",
+                pest: "Fruit flies and aphids are common pests. Use neem oil and insecticides to control them."
+            },
+            "bitter gourd": {
+                water: "Bitter gourds need about 1-1.5 inches of water per week, especially during fruiting.",
+                harvest: "Harvest bitter gourds when the fruits are firm and reach the desired size, typically 55-60 days after planting.",
+                pest: "Fruit flies and aphids are common pests. Use neem oil and insecticides to control them."
+            },
+            apple: {
+                water: "Apple trees require about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest apples when they are fully colored and slightly soft to the touch, typically 120-150 days after flowering.",
+                pest: "Apple maggots and codling moths are common pests. Use pheromone traps and insecticides to control them."
+            },
+            banana: {
+                water: "Banana plants need about 2-3 inches of water per week, especially during fruit development.",
+                harvest: "Harvest bananas when the fruits are fully developed and the skin turns light green, typically 90-120 days after flowering.",
+                pest: "Banana weevils and aphids are common pests. Use insecticides and biological controls to manage them."
+            },
+            mango: {
+                water: "Mango trees require about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest mangoes when the fruits are fully colored and slightly soft to the touch, typically 100-150 days after flowering.",
+                pest: "Mango hoppers and fruit flies are common pests. Use insecticides and pheromone traps to control them."
+            },
+            papaya: {
+                water: "Papaya plants need about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest papayas when the fruits are fully colored and slightly soft to the touch, typically 120-150 days after flowering.",
+                pest: "Papaya fruit flies and aphids are common pests. Use insecticides and pheromone traps to control them."
+            },
+            pineapple: {
+                water: "Pineapple plants require about 1-1.5 inches of water per week, especially during fruit development.",
+                harvest: "Harvest pineapples when the fruits are fully colored and slightly soft to the touch, typically 18-24 months after planting.",
+                pest: "Mealybugs and scale insects are common pests. Use insecticides and biological controls to manage them."
+            },
+            guava: {
+                water: "Guava trees need about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest guavas when the fruits are fully colored and slightly soft to the touch, typically 90-120 days after flowering.",
+                pest: "Fruit flies and guava moths are common pests. Use insecticides and pheromone traps to control them."
+            },
+            pomegranate: {
+                water: "Pomegranate trees require about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest pomegranates when the fruits are fully colored and the skin is hard, typically 120-150 days after flowering.",
+                pest: "Pomegranate fruit borers and aphids are common pests. Use insecticides and biological controls to manage them."
+            },
+            watermelon: {
+                water: "Watermelons need about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest watermelons when the underside turns yellow and the fruit sounds hollow when tapped, typically 80-100 days after planting.",
+                pest: "Aphids and cucumber beetles are common pests. Use insecticides and row covers to control them."
+            },
+            muskmelon: {
+                water: "Muskmelons require about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest muskmelons when the fruit slips easily from the vine and has a sweet aroma, typically 70-90 days after planting.",
+                pest: "Aphids and cucumber beetles are common pests. Use insecticides and row covers to control them."
+            },
+            jackfruit: {
+                water: "Jackfruit trees need about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest jackfruits when the fruits are fully developed and the skin turns yellowish-green, typically 120-150 days after flowering.",
+                pest: "Fruit flies and jackfruit borers are common pests. Use insecticides and pheromone traps to control them."
+            },
+            lemon: {
+                water: "Lemon trees require about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest lemons when the fruits are fully colored and slightly soft to the touch, typically 120-150 days after flowering.",
+                pest: "Citrus leaf miners and aphids are common pests. Use insecticides and biological controls to manage them."
+            },
+            orange: {
+                water: "Orange trees need about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest oranges when the fruits are fully colored and slightly soft to the touch, typically 120-150 days after flowering.",
+                pest: "Citrus leaf miners and aphids are common pests. Use insecticides and biological controls to manage them."
+            },
+            grapes: {
+                water: "Grapes require about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest grapes when the fruits are fully colored and slightly soft to the touch, typically 90-120 days after flowering.",
+                pest: "Grape berry moths and aphids are common pests. Use insecticides and biological controls to manage them."
+            },
+            strawberry: {
+                water: "Strawberries need about 1-1.5 inches of water per week, especially during fruit development.",
+                harvest: "Harvest strawberries when the fruits are fully colored and slightly soft to the touch, typically 30-45 days after flowering.",
+                pest: "Aphids and spider mites are common pests. Use insecticides and biological controls to manage them."
+            },
+            cherry: {
+                water: "Cherry trees require about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest cherries when the fruits are fully colored and slightly soft to the touch, typically 60-90 days after flowering.",
+                pest: "Cherry fruit flies and aphids are common pests. Use insecticides and pheromone traps to control them."
+            },
+            pear: {
+                water: "Pear trees need about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest pears when the fruits are fully colored and slightly soft to the touch, typically 120-150 days after flowering.",
+                pest: "Pear psylla and codling moths are common pests. Use insecticides and biological controls to manage them."
+            },
+            plum: {
+                water: "Plum trees require about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest plums when the fruits are fully colored and slightly soft to the touch, typically 90-120 days after flowering.",
+                pest: "Plum curculio and aphids are common pests. Use insecticides and biological controls to manage them."
+            },
+            fig: {
+                water: "Fig trees need about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest figs when the fruits are fully colored and slightly soft to the touch, typically 90-120 days after flowering.",
+                pest: "Fig beetles and aphids are common pests. Use insecticides and biological controls to manage them."
+            },
+            lychee: {
+                water: "Lychee trees require about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest lychees when the fruits are fully colored and slightly soft to the touch, typically 120-150 days after flowering.",
+                pest: "Lychee stink bugs and fruit borers are common pests. Use insecticides and biological controls to manage them."
+            },
+            coconut: {
+                water: "Coconut palms need about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest coconuts when the fruits are fully mature and the husk turns brown, typically 12-14 months after flowering.",
+                pest: "Rhinoceros beetles and coconut mites are common pests. Use insecticides and biological controls to manage them."
+            },
+            "sweet corn": {
+                water: "Sweet corn requires about 1-2 inches of water per week, especially during ear development.",
+                harvest: "Harvest sweet corn when the kernels are plump and milky, typically 60-90 days after planting.",
+                pest: "Corn earworms and aphids are common pests. Use insecticides and biological controls to manage them."
+            },
+            "custard apple": {
+                water: "Custard apple trees need about 1-2 inches of water per week, especially during fruit development.",
+                harvest: "Harvest custard apples when the fruits are fully colored and slightly soft to the touch, typically 120-150 days after flowering.",
+                pest: "Fruit flies and mealybugs are common pests. Use insecticides and biological controls to manage them."
+            },
+            "dragon fruit": {
+                water: "Dragon fruit plants require about 1-1.5 inches of water per week, especially during fruit development.",
+                harvest: "Harvest dragon fruits when the skin turns bright red and the fruit is slightly soft to the touch, typically 30-50 days after flowering.",
+                pest: "Fruit flies and scale insects are common pests. Use insecticides and biological controls to manage them."
+            },
+            
+            "wheat": {
+        water: "Wheat needs moderate watering, about 12-15 inches throughout the growing season.",
+        harvest: "Harvest wheat when the grains are hard and golden brown, usually 110-130 days after planting.",
+        pest: "Common pests include aphids and armyworms. Use natural predators like ladybugs or neem oil."
+    },
+    "rice": {
+        water: "Rice requires standing water of about 2-4 inches during most of its growing period.",
+        harvest: "Harvest when the grains turn golden and the plants begin to droop, typically 100-180 days after planting.",
+        pest: "Common pests include rice weevils and stem borers. Use pheromone traps and biological control methods."
+    },
+    "jowar": {
+        water: "Watering requirements depend on the specific variety; ensure soil remains moist but not waterlogged.",
+        harvest: "Harvest based on maturity signs unique to the specific type of owar.",
+        pest: "Pest management strategies vary; use organic pesticides and crop rotation methods."
+    },
+    "millet": {
+        water: "Millet is drought-resistant and needs minimal watering, around 10-15 inches per season.",
+        harvest: "Harvest when the grains harden and change color, typically 60-90 days after planting.",
+        pest: "Common pests include shoot flies and aphids. Use neem oil and crop rotation."
+    },
+    "barley": {
+        water: "Barley requires moderate watering, around 12-15 inches over the growing season.",
+        harvest: "Harvest when the grains are firm and golden, about 70-90 days after planting.",
+        pest: "Common pests include aphids and armyworms. Use insecticidal soap or neem oil."
+    },
+    "ragi": {
+        water: "Ragi is drought-tolerant but benefits from moderate watering during early growth stages.",
+        harvest: "Harvest when grains turn reddish-brown, usually 100-120 days after planting.",
+        pest: "Common pests include stem borers and aphids. Use organic sprays and biological control."
+    },
+    "toorDal": {
+        water: "Toor dal needs moderate watering, ensuring soil remains moist but not waterlogged.",
+        harvest: "Harvest when pods dry and turn brown, about 150-180 days after planting.",
+        pest: "Common pests include pod borers and aphids. Use neem oil and pheromone traps."
+    },
+    "moongDal": {
+        water: "Moong dal requires light but frequent watering, about 1-1.5 inches per week.",
+        harvest: "Harvest when pods dry and turn black or brown, around 60-80 days after planting.",
+        pest: "Common pests include whiteflies and pod borers. Use organic insecticides."
+    },
+    "chanaDal": {
+        water: "Chana dal requires minimal watering, about 8-12 inches during the season.",
+        harvest: "Harvest when pods dry and turn brown, usually 100-120 days after planting.",
+        pest: "Common pests include gram pod borers. Use neem oil and natural predators."
+    },
+    "uradDal": {
+        water: "Urad dal needs moderate watering, ensuring soil stays moist but not soggy.",
+        harvest: "Harvest when pods dry and turn black, typically 90-120 days after planting.",
+        pest: "Common pests include aphids and whiteflies. Use organic pesticides and crop rotation."
+    },
+    "masoorDal": {
+        water: "Masoor dal requires moderate watering, ensuring consistent soil moisture.",
+        harvest: "Harvest when pods dry and turn yellowish-brown, around 100-120 days after planting.",
+        pest: "Common pests include aphids and pod borers. Use neem-based sprays."
+    },
+    "rajma": {
+        water: "Rajma requires moderate watering, about 1-1.5 inches per week, avoiding waterlogging.",
+        harvest: "Harvest when pods dry and turn brown, usually 90-120 days after planting.",
+        pest: "Common pests include bean beetles and aphids. Use neem oil and organic pest control methods."
+    }
+};
+
+
+        const vegetables = document.querySelectorAll('.vegetable');
+        const overlay = document.querySelector('.overlay');
+        const tip = document.querySelector('.tip');
+        const tipTitle = document.getElementById('tip-title');
+        const tipWater = document.getElementById('tip-water');
+        const tipHarvest = document.getElementById('tip-harvest');
+        const tipPest = document.getElementById('tip-pest');
+
+        vegetables.forEach(vegetable => {
+            vegetable.addEventListener('click', () => {
+                const crop = vegetable.getAttribute('data-crop');
+                const cropTip = tips[crop];
+
+                tipTitle.textContent = crop.charAt(0).toUpperCase() + crop.slice(1);
+                tipWater.textContent = cropTip.water;
+                tipHarvest.textContent = cropTip.harvest;
+                tipPest.textContent = cropTip.pest;
+
+                overlay.style.display = 'block';
+                tip.style.display = 'block';
+            });
+        });
+
+        function closeTip() {
+            overlay.style.display = 'none';
+            tip.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
